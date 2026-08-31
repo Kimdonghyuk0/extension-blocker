@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: extension-blocker
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/extension_blocker}
+    username: ${SPRING_DATASOURCE_USERNAME:app}
+    password: ${SPRING_DATASOURCE_PASSWORD:app}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      # Schema is owned by Flyway migrations, not Hibernate. validate = fail fast on drift.
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+  servlet:
+    multipart:
+      # Upload size guardrails — see docs/techspec for rationale.
+      max-file-size: 10MB
+      max-request-size: 20MB
+
+server:
+  port: ${SERVER_PORT:8080}
+
+# App-specific policy limits (referenced by services; keeps magic numbers out of code)
+app:
+  upload:
+    dir: ${UPLOAD_DIR:./uploads}
+  extension:
+    custom-max-length: 20
+    custom-max-count: 200

@@ -1,0 +1,29 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS
+.DS_Store
+
+# Env / secrets
+.env
+
+# Logs
+*.log
+
+# Uploaded files (local dev storage)
+/uploads/
+
+# Docs & skills — 로컬 전용, GitHub 에 올리지 않음.
+docs/
+.claude/skills/
+*.md
